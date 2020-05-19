@@ -37,8 +37,6 @@ function checkForTooltip(el, actor) {
   let tooltipStr = "";
   let createTooltip = false;
   
-  // console.log(item);
-
   if (item.hasAttack) {
     createTooltip = true;
     tooltipStr += "<p><b>• Attack: </b>" + formatDiceParts(rollFakeAttack(item)) + '</p>';
@@ -52,7 +50,6 @@ function checkForTooltip(el, actor) {
     };
     var dmgOrHealing = item.isHealing? "Healing" : "Damage";
     tooltipStr += "<p><b>• " + dmgOrHealing + ": </b>" + formatDiceParts(rollFakeDamage(item, itemConfig)) + " " + item.labels.damageTypes + "</p>";
-    console.log(rollFakeDamage(item, itemConfig));
   }
 
   if (item.hasSave) {
