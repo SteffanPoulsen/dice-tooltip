@@ -37,7 +37,7 @@ function checkForTooltip(el, actor) {
   let tooltipStr = "";
   let createTooltip = false;
   
-  console.log(item);
+  // console.log(item);
 
   if (item.hasAttack) {
     createTooltip = true;
