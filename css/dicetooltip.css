@@ -1,0 +1,41 @@
+ /* Tooltip container */
+
+ .diceinfo-tooltip {
+  position: fixed;
+  overflow:hidden;
+  z-index: 10000;
+  padding: 24px;
+  text-align: left;
+  pointer-events:none;
+  vertical-align: middle;
+}
+
+.diceinfo-tooltip .tooltiptext {
+  background: #fff;
+  color: #000;
+  padding: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  /* border-radius */
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  /* box-shadow */
+  -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+  -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+  box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+}
+
+.diceinfo-tooltip .arrow-left {
+  width: 0; 
+  height: 0;
+  top:50%;
+  bottom:50%;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent; 
+  border-right:14px solid #fff;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 10010;
+}
