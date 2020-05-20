@@ -1,6 +1,6 @@
 //Attach a listener for cursor movement
 Hooks.on('ready', function() {
-  window.onmousemove = checkTooltipMove;
+  window.addEventListener('mousemove', checkTooltipMove);
 });
 
 //
@@ -19,14 +19,14 @@ Hooks.on("renderActorSheet", (html) => {
 });
 
 //
-function checkTooltipMove(e) {
-  mousePos = { x: e.clientX, y: e.clientY };
+function checkTooltipMove(ev) {
+  mousePos = { x: ev.clientX, y: ev.clientY };
   
   var tooltip = $(".diceinfo-tooltip");
   if (tooltip.length == 0) return;
 
-  tooltip.css('top', (e.clientY - 24 - tooltip.height()/2) + 'px');
-  tooltip.css('left', (e.clientX + 1) + 'px');
+  tooltip.css('top', (ev.clientY - 24 - tooltip.height()/2) + 'px');
+  tooltip.css('left', (ev.clientX + 1) + 'px');
 }
 
 function checkForTooltip(el, actor) {
