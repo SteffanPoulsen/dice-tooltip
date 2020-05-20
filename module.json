@@ -1,10 +1,10 @@
 {   
     "name": "dice-tooltip",   
     "title": "Dice Tooltip",   
-    "description": "shows a tooltip, when hovering over items/spells/abilities in actor sheets, containing info about which dice to roll, and which bonuses apply. The module is intended to better support players/GMs that dislike digital rolling",   
+    "description": "Shows a tooltip, when hovering over items/spells/abilities in actor sheets, containing info about which dice to roll, and which bonuses apply. The module is intended to better support players/GMs that dislike digital rolling",   
     "author": "Steffan Poulsen",
     "url": "https://github.com/SteffanPoulsen/dice-tooltip",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "minimumCoreVersion": "0.5.0",
     "compatibleCoreVersion": "0.5.7",
     "styles": ["/css/dicetooltip.css"],
