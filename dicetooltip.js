@@ -55,7 +55,21 @@ Hooks.on("renderActorSheet", (html) => {
     }
   });
 
+  $(".short-rest").on({
+    mouseenter: function () {
+      checkShortRestTooltip(actor);
+    },
+    mouseleave:function () {
+      removeTooltip();
+    }
+  });
+
 });
+
+function checkShortRestTooltip(actor) {
+  var tooltipStr = "<p><b>• Hit Die:</b> " + actor.data.items[0].data.hitDice + "</p>";
+  showTooltip(tooltipStr);
+}
 
 function checkDeathSaveTooltip() {
   var tooltipStr = "<p><b>• Saving Throw:</b> 1d20</p>";
@@ -69,8 +83,7 @@ function checkSkillTooltip(el, actor) {
   var skillData = actor.data.data.skills[skill];
   var tooltipStr = "";
 
-  // tooltipStr += "<p><b>• " + skillData.label + " Check:</b> 1d20 + " + skillData.total + "</p>";
-  tooltipStr += "<p><b>• Skill Check:</b> 1d20 + " + skillData.total + "</p>";
+  tooltipStr += "<p><b>• Skill Check:</b> 1d20" + formatBonus(skillData.total) + "</p>";
 
   showTooltip(tooltipStr);
 }
@@ -83,10 +96,10 @@ function checkAbilityTooltip(el, actor) {
   var tooltipStr = "";
 
   //Check
-  tooltipStr += "<p><b>• Ability Check:</b> 1d20 + " + abilityData.mod + "</p>";
+  tooltipStr += "<p><b>• Ability Check:</b> 1d20" + formatBonus(abilityData.mod) + "</p>";
 
   //Save
-  tooltipStr += "<p><b>• Saving Throw:</b> 1d20 + " + eval(abilityData.mod + abilityData.prof) + "</p>";
+  tooltipStr += "<p><b>• Saving Throw:</b> 1d20" + formatBonus(abilityData.mod + abilityData.prof) + "</p>";
 
   showTooltip(tooltipStr);
 }
@@ -132,6 +145,12 @@ function showTooltip(text) {
 //
 function removeTooltip() {
   $(".diceinfo-tooltip").remove();
+}
+
+function formatBonus(bonus) {
+  var evalNum = eval(bonus);
+  var numberPlusMinus = evalNum >= 0? " + " : " - ";
+  return numberPlusMinus + Math.abs(evalNum);
 }
 
 function formatDiceParts(rollData) {
