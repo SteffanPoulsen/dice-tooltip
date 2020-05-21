@@ -3,10 +3,12 @@
     "title": "D&D5E Dice Tooltip",   
     "description": "Shows a tooltip, when hovering over items/spells/abilities/skills/etc. in actor sheets, containing info about which dice to roll, and which bonuses apply. The module is intended to better support players/GMs that dislike digital rolling",   
     "author": "Steffan Poulsen",
-    "url": "https://github.com/SteffanPoulsen/dice-tooltip",
     "version": "1.0.0",
     "minimumCoreVersion": "0.5.0",
     "compatibleCoreVersion": "0.5.7",
     "styles": ["/css/dicetooltip.css"],
-    "scripts": ["./dicetooltip.js"]
+    "scripts": ["./dicetooltip.js"],
+    "url": "https://github.com/SteffanPoulsen/dice-tooltip",
+    "manifest": "",
+    "download": ""
 }
