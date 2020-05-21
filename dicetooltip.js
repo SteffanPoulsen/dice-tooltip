@@ -1,25 +1,10 @@
 //Attach a listener for cursor movement
 Hooks.on('ready', function() {
-  window.addEventListener('mousemove', checkTooltipMove);
+  window.addEventListener('mousemove', setTooltipPosition);
 });
 
 //
-Hooks.on("renderActorSheet", (html) => {
-  var actorId = html.id.split("-")[1];
-  var actor = game.actors.get(actorId);
-
-  $(".item .rollable").on({
-    mouseenter: function () {
-      checkForTooltip(this, actor);
-    },
-    mouseleave:function () {
-      removeTooltip();
-    }
-  });
-});
-
-//
-function checkTooltipMove(ev) {
+function setTooltipPosition(ev) {
   mousePos = { x: ev.clientX, y: ev.clientY };
   
   var tooltip = $(".diceinfo-tooltip");
@@ -29,7 +14,84 @@ function checkTooltipMove(ev) {
   tooltip.css('left', (ev.clientX + 1) + 'px');
 }
 
-function checkForTooltip(el, actor) {
+//
+Hooks.on("renderActorSheet", (html) => {
+  var actorId = html.id.split("-")[1];
+  var actor = game.actors.get(actorId);
+
+  $(".item .rollable").on({
+    mouseenter: function () {
+      checkItemTooltip(this, actor);
+    },
+    mouseleave:function () {
+      removeTooltip();
+    }
+  });
+
+  $(".ability .rollable").on({
+    mouseenter: function () {
+      checkAbilityTooltip(this, actor);
+    },
+    mouseleave:function () {
+      removeTooltip();
+    }
+  });
+
+  $(".skill .rollable").on({
+    mouseenter: function () {
+      checkSkillTooltip(this, actor);
+    },
+    mouseleave:function () {
+      removeTooltip();
+    }
+  });
+
+  $(".death-saves .rollable").on({
+    mouseenter: function () {
+      checkDeathSaveTooltip();
+    },
+    mouseleave:function () {
+      removeTooltip();
+    }
+  });
+
+});
+
+function checkDeathSaveTooltip() {
+  var tooltipStr = "<p><b>• Saving Throw:</b> 1d20</p>";
+  showTooltip(tooltipStr);
+}
+
+function checkSkillTooltip(el, actor) {
+  var dataItem = $(el).closest("li").get();
+  var data = dataItem[0].dataset;
+  var skill = data.skill;
+  var skillData = actor.data.data.skills[skill];
+  var tooltipStr = "";
+
+  // tooltipStr += "<p><b>• " + skillData.label + " Check:</b> 1d20 + " + skillData.total + "</p>";
+  tooltipStr += "<p><b>• Skill Check:</b> 1d20 + " + skillData.total + "</p>";
+
+  showTooltip(tooltipStr);
+}
+
+function checkAbilityTooltip(el, actor) {
+  var dataItem = $(el).closest("li").get();
+  var data = dataItem[0].dataset;
+  var ability = data.ability;
+  var abilityData = actor.data.data.abilities[ability];
+  var tooltipStr = "";
+
+  //Check
+  tooltipStr += "<p><b>• Ability Check:</b> 1d20 + " + abilityData.mod + "</p>";
+
+  //Save
+  tooltipStr += "<p><b>• Saving Throw:</b> 1d20 + " + eval(abilityData.mod + abilityData.prof) + "</p>";
+
+  showTooltip(tooltipStr);
+}
+
+function checkItemTooltip(el, actor) {
   var dataItem = $(el).closest("li").get();
   var data = dataItem[0].dataset;
   let item = actor.getOwnedItem(data.itemId);
@@ -45,7 +107,7 @@ function checkForTooltip(el, actor) {
   if (item.hasDamage) {
     createTooltip = true;
     const itemConfig = {
-      // spellLevel: 3,
+      // spellLevel: 1, ** need to find a cool solution for this **
       versatile: item.isVersatile
     };
     var dmgOrHealing = item.isHealing? "Healing" : "Damage";
@@ -58,8 +120,12 @@ function checkForTooltip(el, actor) {
   }
 
   if (!createTooltip) return;
-  
-  var template = '<div class="diceinfo-tooltip"><span><div class="arrow-left"></div><div class="tooltiptext">' + tooltipStr + '</div></span></div>';
+  showTooltip(tooltipStr);
+}
+
+
+function showTooltip(text) {
+  var template = '<div class="diceinfo-tooltip"><span><div class="arrow-left"></div><div class="tooltiptext">' + text + '</div></span></div>';
   $("body").append(template);
 }
 
