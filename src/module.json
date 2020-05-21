@@ -1,7 +1,7 @@
 {   
     "name": "dice-tooltip",   
     "title": "D&D5E Dice Tooltip",   
-    "description": "Shows a tooltip, when hovering over items/spells/abilities/skills/etc. in actor sheets, containing info about which dice to roll, and which bonuses apply. The module is intended to better support players/GMs that dislike digital rolling",   
+    "description": "Shows a tooltip in actor sheets when hovering on Items/Spells/Abilities/etc, containing dice and bonus information. Especially useful for people that want to roll physical dice, but still maintain all of the convenience that Foundry provides.",   
     "author": "Steffan Poulsen",
     "version": "1.0.0",
     "minimumCoreVersion": "0.5.0",
