@@ -14,7 +14,7 @@ Especially useful for people that want to roll physical dice, but still maintain
 
 ## Alternative
 
-1. Download [this zip file](https://)
+1. Download [this zip file](https://github.com/SteffanPoulsen/dice-tooltip/raw/master/dist/dice-tooltip.zip)
 2. Extract it into the `<FoundryVTT directory>/data/modules`-folder
 
 # Compatibility
