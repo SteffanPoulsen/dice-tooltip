@@ -64,6 +64,7 @@ Hooks.on("renderActorSheet", (html) => {
     }
   });
 
+  //More to come
 });
 
 function checkShortRestTooltip(actor) {
@@ -183,7 +184,7 @@ function formatDiceParts(rollData) {
 }
 
 /* -------------------------------------------- */
-/*  Item Rolls - Attack, Damage, Saves, Checks  */
+/*  Copy pasted from the D&D5E System Code      */
 /* -------------------------------------------- */
 
 function rollFakeAttack(item) {
