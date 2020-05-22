@@ -10,5 +10,5 @@
     "scripts": ["./dicetooltip.js"],
     "url": "https://github.com/SteffanPoulsen/dice-tooltip",
     "manifest": "https://github.com/SteffanPoulsen/dice-tooltip/raw/master/src/module.json",
-    "download": "https://github.com/SteffanPoulsen/dice-tooltip/raw/master/dist/dice-tooltip_101.zip"
+    "download": "https://github.com/SteffanPoulsen/dice-tooltip/raw/master/dist/dice-tooltip.zip"
 }
