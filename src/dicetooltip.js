@@ -14,8 +14,17 @@ function setTooltipPosition(ev) {
   tooltip.css('left', (ev.clientX + 1) + 'px');
 }
 
-//
+//Support for Sky's Alt 5e Sheet
+Hooks.on("renderedAlt5eSheet", (html) => {
+  prepareDiceTooltipEvents(html);
+});
+
+//Standard 5e Sheet
 Hooks.on("renderActorSheet", (html) => {
+  prepareDiceTooltipEvents(html);
+});
+
+function prepareDiceTooltipEvents(html) {
   var actorId = html.id.split("-")[1];
   var actor = game.actors.get(actorId);
 
@@ -63,9 +72,7 @@ Hooks.on("renderActorSheet", (html) => {
       removeTooltip();
     }
   });
-
-  //More to come
-});
+}
 
 function checkShortRestTooltip(actor) {
   var tooltipStr = "<p><b>• Hit Die:</b> " + actor.data.items[0].data.hitDice + "</p>";
