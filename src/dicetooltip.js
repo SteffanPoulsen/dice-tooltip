@@ -282,7 +282,7 @@ function rollFakeDamage(item, {spellLevel=null, versatile=false}={}) {
 
 function d20RollFake({parts=[], data={}, rollMode=null, title=null,
                       flavor=null, advantage=null, disadvantage=null, critical=20, fumble=1, targetValue=null,
-                      elvenAccuracy=false, halflingLucky=false}={}) {
+                      elvenAccuracy=false, halflingLucky=false, reliableTalent=false}={}) {
 
   // Handle input arguments
   flavor = flavor || title;
@@ -312,7 +312,10 @@ function d20RollFake({parts=[], data={}, rollMode=null, title=null,
     }
 
     // Include the d20 roll
-    parts.unshift(`${nd}d20${mods}`);
+    // Prepend the d20 roll
+    let formula = `${nd}d20${mods}`;
+    if (reliableTalent) formula = `{${nd}d20${mods},10}kh`;
+    parts.unshift(formula);
 
     // Optionally include a situational bonus
     if ( form !== null ) data['bonus'] = form.bonus.value;
@@ -335,6 +338,12 @@ function d20RollFake({parts=[], data={}, rollMode=null, title=null,
     d20.options.critical = critical;
     d20.options.fumble = fumble;
     if ( targetValue ) d20.options.target = targetValue;
+
+    // If reliable talent was applied, add it to the flavor text
+    if ( reliableTalent && roll.dice[0].total < 10 ) {
+      flavor += ` (${game.i18n.localize("DND5E.FlagsReliableTalent")})`;
+    }
+
     return roll;
   };
 
