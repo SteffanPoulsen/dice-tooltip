@@ -25,7 +25,8 @@ Hooks.on("renderActorSheet", (html) => {
 });
 
 function prepareDiceTooltipEvents(html) {
-  var actorId = html.id.split("-")[1];
+  var actorId = html.id.split("actor-")[1];
+  console.log(html);
   var actor = game.actors.get(actorId);
 
   $(".item .rollable").on({
@@ -37,7 +38,7 @@ function prepareDiceTooltipEvents(html) {
     }
   });
 
-  $(".ability .rollable").on({
+  $(".ability-name.rollable").on({
     mouseenter: function () {
       checkAbilityTooltip(this, actor);
     },
@@ -46,7 +47,7 @@ function prepareDiceTooltipEvents(html) {
     }
   });
 
-  $(".skill .rollable").on({
+  $(".skill-name.rollable").on({
     mouseenter: function () {
       checkSkillTooltip(this, actor);
     },
@@ -55,7 +56,7 @@ function prepareDiceTooltipEvents(html) {
     }
   });
 
-  $(".death-saves .rollable").on({
+  $(".death-saves.rollable").on({
     mouseenter: function () {
       checkDeathSaveTooltip();
     },
@@ -63,6 +64,7 @@ function prepareDiceTooltipEvents(html) {
       removeTooltip();
     }
   });
+
 
   $(".short-rest").on({
     mouseenter: function () {

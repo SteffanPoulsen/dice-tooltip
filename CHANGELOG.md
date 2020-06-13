@@ -1,3 +1,7 @@
+# 1.0.3
+
+* Now works with "PopOut!"
+
 # 1.0.2
 
 * Now works with "Sky's Alternate 5th Edition Dungeons & Dragons Sheet"
