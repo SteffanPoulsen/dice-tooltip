@@ -25,9 +25,16 @@ Hooks.on("renderActorSheet", (html) => {
 });
 
 function prepareDiceTooltipEvents(html) {
-  var actorId = html.id.split("actor-")[1];
-  console.log(html);
-  var actor = game.actors.get(actorId);
+  var splits = html.id.split("-");
+  var actor = null;
+  for (var i=0;i<splits.length;i++) {
+      actor = game.actors.get(splits[i]);
+      if (actor != null) {
+        break;
+      }
+  }
+
+  if (actor == null) return;
 
   $(".item .rollable").on({
     mouseenter: function () {

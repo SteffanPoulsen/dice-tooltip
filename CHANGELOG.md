@@ -1,3 +1,8 @@
+# 1.0.4
+
+* Fixed a breaking bug that caused the tooltip to malfuncition on various overlays
+* The code is now less rigid in regards to how actor sheets handle their id structuring.
+
 # 1.0.3
 
 * Now works with "PopOut!"
