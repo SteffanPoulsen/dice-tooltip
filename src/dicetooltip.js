@@ -84,7 +84,7 @@ function prepareDiceTooltipEvents(html) {
 }
 
 function checkShortRestTooltip(actor) {
-  var tooltipStr = "<p><b>• Hit Die:</b> " + actor.data.items[0].data.hitDice + "</p>";
+  var tooltipStr = "<p><b>• Hit Die:</b> " + (actor.data.items.filter(it => it.type === "class").map(it => it.data.hitDice).join(", ") || "unknown") + "</p>";
   showTooltip(tooltipStr);
 }
 
