@@ -34,9 +34,11 @@ function prepareDiceTooltipEvents(html) {
       }
   }
 
+  var sheetID = "#" + html.id;
+
   if (actor == null) return;
 
-  $(".item .rollable").on({
+  $(".item .rollable", sheetID).on({
     mouseenter: function () {
       checkItemTooltip(this, actor);
     },
@@ -45,7 +47,7 @@ function prepareDiceTooltipEvents(html) {
     }
   });
 
-  $(".ability-name.rollable").on({
+  $(".ability-name.rollable", sheetID).on({
     mouseenter: function () {
       checkAbilityTooltip(this, actor);
     },
@@ -54,7 +56,7 @@ function prepareDiceTooltipEvents(html) {
     }
   });
 
-  $(".skill-name.rollable").on({
+  $(".skill-name.rollable", sheetID).on({
     mouseenter: function () {
       checkSkillTooltip(this, actor);
     },
@@ -63,7 +65,7 @@ function prepareDiceTooltipEvents(html) {
     }
   });
 
-  $(".death-saves.rollable").on({
+  $(".death-saves.rollable", sheetID).on({
     mouseenter: function () {
       checkDeathSaveTooltip();
     },
@@ -73,7 +75,7 @@ function prepareDiceTooltipEvents(html) {
   });
 
 
-  $(".short-rest").on({
+  $(".short-rest", sheetID).on({
     mouseenter: function () {
       checkShortRestTooltip(actor);
     },
