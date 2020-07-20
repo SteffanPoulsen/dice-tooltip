@@ -1,3 +1,7 @@
+# 1.0.6
+
+* Redid the hit-dice tooltip code, now works for multiclassing as well. 
+
 # 1.0.5
 
 * Fixed an issue when having multiple character/npc sheets open at the same time.

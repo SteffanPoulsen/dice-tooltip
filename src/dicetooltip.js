@@ -86,7 +86,30 @@ function prepareDiceTooltipEvents(html) {
 }
 
 function checkShortRestTooltip(actor) {
-  var tooltipStr = "<p><b>• Hit Die:</b> " + actor.data.items[0].data.hitDice + "</p>";
+  var hitDice = [];
+  for (var i=0;i<actor.data.items.length;i++) {
+    if (actor.data.items[i].type == "class") {
+      var hitDie = {die: actor.data.items[i].data.hitDice, amount: actor.data.items[i].data.levels};
+      var sameDieTypeFound = false;
+      for (var j=0;j<hitDice.length;j++) {
+        if (hitDice[j].die == hitDie.die) {
+          hitDice[j].amount += hitDie.amount;
+          sameDieTypeFound = true;
+          break;
+        }
+      }
+
+      if (!sameDieTypeFound) hitDice.push(hitDie);
+    }
+  }
+
+  var dieStr = "";
+  for (var i=0;i<hitDice.length;i++) {
+    if (i > 0) dieStr += " + ";
+    dieStr += hitDice[i].amount + hitDice[i].die;
+  }
+
+  var tooltipStr = "<p><b>• Hit Dice:</b> " + dieStr + "</p>";
   showTooltip(tooltipStr);
 }
 
@@ -99,6 +122,9 @@ function checkSkillTooltip(el, actor) {
   var dataItem = $(el).closest("li").get();
   var data = dataItem[0].dataset;
   var skill = data.skill;
+
+  if (skill == undefined) return;
+
   var skillData = actor.data.data.skills[skill];
   var tooltipStr = "";
 
