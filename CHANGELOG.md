@@ -1,3 +1,8 @@
+# 1.0.7
+
+* Added support for "Tidy5e Sheet" (https://github.com/sdenec/tidy5e-sheet)
+* Fixed an issue where supported sheet modules would have doubled events (performance improvement)
+
 # 1.0.6
 
 * Redid the hit-dice tooltip code, now works for multiclassing as well. 

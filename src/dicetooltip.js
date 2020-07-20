@@ -19,8 +19,15 @@ Hooks.on("renderedAlt5eSheet", (html) => {
   prepareDiceTooltipEvents(html);
 });
 
+//Support for Tidy5e Sheet
+Hooks.on("renderedTidy5eSheet", (html) => {
+  prepareDiceTooltipEvents(html);
+});
+
 //Standard 5e Sheet
 Hooks.on("renderActorSheet", (html) => {
+  var el = $(html.element);
+  if (el.hasClass("tidy5e") || el.hasClass("alt5e")) return; //Prevent event doubling on supported sheet modules
   prepareDiceTooltipEvents(html);
 });
 
