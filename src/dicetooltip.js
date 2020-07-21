@@ -24,6 +24,10 @@ Hooks.on("renderedTidy5eSheet", (html) => {
   prepareDiceTooltipEvents(html);
 });
 
+Hooks.on("renderTidy5eNPC", (html) => {
+  prepareDiceTooltipEvents(html);
+});
+
 //Standard 5e Sheet
 Hooks.on("renderActorSheet", (html) => {
   var el = $(html.element);
