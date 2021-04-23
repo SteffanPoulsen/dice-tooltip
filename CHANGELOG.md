@@ -1,3 +1,7 @@
+# 1.0.9
+
+* Change references to `roll.parts` to use new `roll.terms`
+
 # 1.0.8
 
 * Added support for "Tidy5e Sheet" NPCs (https://github.com/sdenec/tidy5e-sheet)
