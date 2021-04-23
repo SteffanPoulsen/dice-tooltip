@@ -213,13 +213,13 @@ function formatDiceParts(rollData) {
   var res = "";
   var bonusStr = "";
 
-  if (rollData.parts.length > 0) {
-    for (var i=0;i<rollData.parts.length;i++) {
-      if (typeof rollData.parts[i] == 'object') {
+  if (rollData.terms.length > 0) {
+    for (var i=0;i<rollData.terms.length;i++) {
+      if (typeof rollData.terms[i] == 'object') {
         if (i > 0) res += " + ";
-        res += rollData.parts[i].formula;
+        res += rollData.terms[i].formula;
       } else {
-        bonusStr += rollData.parts[i];
+        bonusStr += rollData.terms[i];
       }
     }
   } else {
@@ -388,8 +388,8 @@ function d20RollFake({parts=[], data={}, rollMode=null, title=null,
     }
 
     // Execute the roll and flag critical thresholds on the d20
-    let roll = new Roll(parts.join(" + "), data).roll();
-    const d20 = roll.parts[0];
+    let roll = new Roll(parts.join(" + "), data);
+    const d20 = roll.terms[0];
     d20.options.critical = critical;
     d20.options.fumble = fumble;
     if ( targetValue ) d20.options.target = targetValue;
